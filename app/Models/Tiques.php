@@ -9,5 +9,6 @@ class Tiques extends Model
     protected $fillable = [
         'id_categoria',
         'id_canal_registros',
+        'cantidad',
     ];
 }

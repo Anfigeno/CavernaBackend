@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_categoria', 20)->nullable();
             $table->string('id_canal_registros', 20)->nullable();
+            $table->integer('cantidad')->default(0);
             $table->timestamps();
         });
     }

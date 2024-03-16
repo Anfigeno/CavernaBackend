@@ -11,6 +11,7 @@ Route::prefix('/tiques')
         Route::get('/', 'listar');
         Route::post('/', 'crear');
         Route::put('/', 'actualizar');
+        Route::put('/cantidad', 'actualizarCantidad');
     });
 
 Route::prefix('/roles_administracion')

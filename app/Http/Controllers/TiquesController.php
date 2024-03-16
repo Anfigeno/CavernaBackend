@@ -102,4 +102,28 @@ class TiquesController extends Controller
 
         return response()->json($tiques, 200);
     }
+
+    public function actualizarCantidad(): JsonResponse
+    {
+        if (! $this->existeTablaTiques()) {
+            return response()->json([
+                'error' => 'La tabla de tiques no existe',
+            ], 404);
+        }
+
+        $tiques = Tiques::first();
+        $tiques->cantidad += 1;
+
+        try {
+            $tiques->save();
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'error' => 'Error al actualizar la tabla de tiques',
+            ], 500);
+        }
+
+        return response()->json($tiques, 200);
+    }
 }
