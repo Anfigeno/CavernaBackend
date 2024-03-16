@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('id_administrador', 20)->nullable();
             $table->string('id_director', 20)->nullable();
             $table->string('id_moderador', 20)->nullable();
+            $table->string('id_soporte', 20)->nullable();
             $table->string('id_interno', 20)->nullable();
             $table->timestamps();
         });

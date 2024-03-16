@@ -45,6 +45,7 @@ class RolesAdministracionController extends Controller
             'id_director' => 'string|max:20',
             'id_moderador' => 'string|max:20',
             'id_interno' => 'string|max:20',
+            'id_soporte' => 'string|max:20',
         ]);
 
         if ($validador->fails()) {
@@ -83,6 +84,7 @@ class RolesAdministracionController extends Controller
             'id_director' => 'string|max:20',
             'id_moderador' => 'string|max:20',
             'id_interno' => 'string|max:20',
+            'id_soporte' => 'string|max:20',
         ]);
 
         if ($validador->fails()) {

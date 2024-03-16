@@ -10,6 +10,7 @@ class RolesAdministracion extends Model
         'id_administrador',
         'id_director',
         'id_moderador',
+        'id_soporte',
         'id_interno',
     ];
 }
