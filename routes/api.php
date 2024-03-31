@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CanalesRegistrosController;
 use App\Http\Controllers\EmbedsController;
 use App\Http\Controllers\RolesAdministracionController;
 use App\Http\Controllers\TiquesController;
@@ -27,5 +28,13 @@ Route::prefix('/embeds')
     ->group(function () {
         Route::get('/', 'listar');
         Route::post('/', 'crear');
+        Route::put('/', 'actualizar');
+    });
+
+Route::prefix('/canales_registros')
+    ->controller(CanalesRegistrosController::class)
+    ->group(function () {
+        Route::get('/', 'listar');
+        Route::post('/', 'crearar');
         Route::put('/', 'actualizar');
     });
