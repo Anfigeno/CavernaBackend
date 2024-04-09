@@ -17,7 +17,7 @@ class TiquesController extends Controller
         return $tiques !== null;
     }
 
-    public function listar()
+    public function listar(): JsonResponse
     {
         if (! $this->existeTablaTiques()) {
             return response()->json([
@@ -30,7 +30,7 @@ class TiquesController extends Controller
         return response()->json($tiques, 200);
     }
 
-    public function crear(Request $request)
+    public function crear(Request $request): JsonResponse
     {
         if ($this->existeTablaTiques()) {
             return response()->json([
@@ -78,7 +78,7 @@ class TiquesController extends Controller
         $datos = $request->all();
         $validador = Validator::make($datos, [
             'id_categoria' => 'string|max:20',
-            'id_registros' => 'string|max:20',
+            'id_canal_registros' => 'string|max:20',
         ]);
 
         if ($validador->fails()) {
