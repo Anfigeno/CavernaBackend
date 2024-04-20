@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Autoroles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class AutorolesController extends Controller
@@ -16,14 +17,16 @@ class AutorolesController extends Controller
         return response()->json($autoroles, 200);
     }
 
-    public function insertar(Request $request): JsonResponse
+    public function insertar(Request $request): JsonResponse|Response
     {
         $datos = $request->all();
 
         foreach ($datos as $dato) {
             $validador = Validator::make($dato, [
-                'id_rol' => 'string|max:20',
+                'id_rol' => 'required|string|max:20',
+                'nombre' => 'string|max:50',
                 'emoji' => 'string|max:1',
+                'tipo' => 'required|string|max:20',
             ]);
 
             if ($validador->fails()) {
@@ -45,6 +48,6 @@ class AutorolesController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
 
-        return response()->json(['ok' => true], 201);
+        return response(status: 201);
     }
 }

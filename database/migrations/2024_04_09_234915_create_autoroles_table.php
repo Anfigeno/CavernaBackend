@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('autoroles', function (Blueprint $table) {
             $table->id();
-            $table->string('id_rol');
-            $table->string('emoji');
+            $table->string('id_rol', 20);
+            $table->string('nombre', 50)->nullable();
+            $table->string('emoji', 1)->nullable();
+            $table->string('tipo', 20);
             $table->timestamps();
         });
     }
