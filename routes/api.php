@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutorolesController;
+use App\Http\Controllers\CanalesImportantesController;
 use App\Http\Controllers\CanalesRegistrosController;
 use App\Http\Controllers\EmbedsController;
 use App\Http\Controllers\RolesAdministracionController;
@@ -45,4 +46,12 @@ Route::prefix('/autoroles')
     ->group(function () {
         Route::get('/', 'listar');
         Route::put('/', 'insertar');
+    });
+
+Route::prefix('/canales_importantes')
+    ->controller(CanalesImportantesController::class)
+    ->group(function () {
+        Route::get('/', 'listar');
+        Route::post('/', 'crear');
+        Route::put('/', 'actualizar');
     });
