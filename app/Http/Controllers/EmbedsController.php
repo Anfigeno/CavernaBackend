@@ -5,76 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Embeds;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class EmbedsController extends Controller
 {
-    private function tablaEmbedsExiste(): bool
-    {
-        $embeds = Embeds::first();
-
-        return $embeds !== null;
-    }
-
     public function listar(): JsonResponse
     {
-        if (! $this->tablaEmbedsExiste()) {
-            return response()->json([
-                'error' => 'La tabla de embeds no existe',
-            ], 404);
-        }
-
         $embeds = Embeds::first();
+
+        if (! $embeds) {
+            $embeds = new Embeds();
+            $embeds->save();
+            $embeds->refresh();
+        }
 
         return response()->json($embeds, 200);
     }
 
-    public function crear(Request $request): JsonResponse
+    public function actualizar(Request $request): JsonResponse|Response
     {
-        if ($this->tablaEmbedsExiste()) {
-            return response()->json([
-                'error' => 'La tabla de embeds ya existe',
-            ], 409);
-        }
-
-        $datos = $request->all();
-
-        $validador = Validator::make($datos, [
-            'url_imagen_limitadora' => 'string|max:255',
-            'color' => 'string|max:7',
-        ]);
-
-        if ($validador->fails()) {
-            return response()->json([
-                'error' => $validador->errors(),
-            ], 400);
-        }
-
-        $embeds = new Embeds();
-        $embeds->fill($datos);
-
-        try {
-            $embeds->save();
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-
-            return response()->json([
-                'error' => 'Error al crear el embeds',
-            ], 500);
-        }
-
-        return response()->json($embeds, 201);
-    }
-
-    public function actualizar(Request $request): JsonResponse
-    {
-        if (! $this->tablaEmbedsExiste()) {
-            return response()->json([
-                'error' => 'La tabla de embeds no existe',
-            ], 404);
-        }
-
         $datos = $request->all();
         $validador = Validator::make($datos, [
             'url_imagen_limitadora' => 'string|max:255',
@@ -88,6 +39,13 @@ class EmbedsController extends Controller
         }
 
         $embeds = Embeds::first();
+
+        if (! $embeds) {
+            $embeds = new Embeds();
+            $embeds->save();
+            $embeds->refresh();
+        }
+
         $embeds->fill($datos);
 
         try {
@@ -100,6 +58,6 @@ class EmbedsController extends Controller
             ], 500);
         }
 
-        return response()->json($embeds, 200);
+        return response(status: 200);
     }
 }
