@@ -28,9 +28,9 @@ class MensajesDelSistemaController extends Controller
         $datos = $request->all();
 
         $validador = Validator::make($datos, [
-            'bienvenida' => 'string|max:400',
-            'sin_permisos' => 'string|max:100',
-            'error_interaccion' => 'string|max:100',
+            'bienvenida' => 'string|max:1000',
+            'sin_permisos' => 'string|max:200',
+            'error_interaccion' => 'string|max:200',
         ]);
 
         if ($validador->fails()) {
