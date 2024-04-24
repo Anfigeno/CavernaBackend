@@ -4,6 +4,7 @@ use App\Http\Controllers\AutorolesController;
 use App\Http\Controllers\CanalesImportantesController;
 use App\Http\Controllers\CanalesRegistrosController;
 use App\Http\Controllers\EmbedsController;
+use App\Http\Controllers\MensajesDelSistemaController;
 use App\Http\Controllers\RolesAdministracionController;
 use App\Http\Controllers\TiquesController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,13 @@ Route::prefix('/autoroles')
 
 Route::prefix('/canales_importantes')
     ->controller(CanalesImportantesController::class)
+    ->group(function () {
+        Route::get('/', 'listar');
+        Route::put('/', 'actualizar');
+    });
+
+Route::prefix('/mensajes_del_sistema')
+    ->controller(MensajesDelSistemaController::class)
     ->group(function () {
         Route::get('/', 'listar');
         Route::put('/', 'actualizar');
