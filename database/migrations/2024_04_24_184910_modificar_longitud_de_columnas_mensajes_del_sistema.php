@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('mensajes_del_sistemas', function (Blueprint $table) {
-            $table->string('bienvenida', 1000)->change();
-            $table->string('sin_permisos', 200)->change();
-            $table->string('error_interaccion', 200)->change();
+            $table->string('bienvenida', 1000)->nullable()->change();
+            $table->string('sin_permisos', 200)->nullable()->change();
+            $table->string('error_interaccion', 200)->nullable()->change();
         });
     }
 
