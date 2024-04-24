@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('canales_importantes', function (Blueprint $table) {
             $table->id();
             $table->string('id_canal_sugerencias', 20)->nullable();
+            $table->string('id_canal_general', 20)->nullable();
             $table->timestamps();
         });
     }

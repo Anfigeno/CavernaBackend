@@ -29,6 +29,7 @@ class CanalesImportantesController extends Controller
 
         $validador = Validator::make($datos, [
             'id_canal_sugerencias' => 'string|max:20',
+            'id_canal_general' => 'string|max:20',
         ]);
 
         if ($validador->fails()) {

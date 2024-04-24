@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CanalesImportantes extends Model
 {
-    protected $fillable = ['id_canal_sugerencias'];
+    protected $fillable = ['id_canal_sugerencias', 'id_canal_general'];
 }
