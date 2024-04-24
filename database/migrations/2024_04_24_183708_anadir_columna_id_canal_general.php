@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('canales_importantes', function (Blueprint $table) {
-            $table->id();
-            $table->string('id_canal_sugerencias', 20)->nullable();
-            $table->timestamps();
+        Schema::table('canales_importantes', function (Blueprint $table) {
+            $table->string('id_canal_general', 20)->nullable();
         });
     }
 
@@ -23,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('canales_importantes');
+        //
     }
 };
